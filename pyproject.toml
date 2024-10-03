@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "repl-nix-compcheckpdfextractor"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+psycopg2-binary = "^2.9.9"
+email-validator = "^2.2.0"
+flask = "^3.0.3"
+flask-sqlalchemy = "^3.1.1"
+trafilatura = "^1.12.2"
+openai = "^1.50.2"
+pypdf2 = "^3.0.1"
+langchain = "^0.3.1"
+faiss-cpu = "^1.8.0.post1"
+langchain-community = "^0.3.1"
+werkzeug = "^3.0.4"
+langchain-openai = "^0.2.1"
+ratelimit = "^2.2.1"
+python-dotenv = "^1.0.1"
+redis = "^5.1.0"
+rq = "^1.16.2"
+diskcache = "^5.6.3"
+captum = "^0.7.0"
+transformers = "^4.45.1"
+torch = "^2.4.1"
+openpyxl = "^3.1.5"
+pymupdf = "^1.24.10"
+langchain-text-splitters = "^0.3.0"
+flask-login = "^0.6.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

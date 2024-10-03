@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('list_documents') }}">Documents</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Document List</h1>
+        {% if documents %}
+            <ul class="document-list">
+                {% for filename, doc in documents.items() %}
+                    <li>
+                        <a href="{{ url_for('view_document', filename=filename) }}">{{ filename }}</a>
+                        <form action="{{ url_for('delete_document', filename=filename) }}" method="post" class="inline-form">
+                            <button type="submit" class="delete-btn" data-filename="{{ filename }}">Delete</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No documents uploaded yet.</p>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

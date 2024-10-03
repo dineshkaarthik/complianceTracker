@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance Checklist Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('list_documents') }}">Documents</a></li>
+            <li><a href="#" id="show-api-usage">API Usage</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Compliance Checklist Generator</h1>
+        <p>Welcome, {{ current_user.username }}!</p>
+        <form id="upload-form" enctype="multipart/form-data">
+            <input type="file" id="pdf-files" name="files" accept=".pdf" multiple required>
+            <button type="submit">Generate Checklists</button>
+        </form>
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Processing... This may take a few minutes.</p>
+        </div>
+        <div id="message" class="hidden"></div>
+        <div id="error-message" class="hidden"></div>
+        <div id="document-status" class="hidden"></div>
+        <div id="checklist-container" class="hidden"></div>
+    </div>
+    <div id="api-usage-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>API Usage</h2>
+            <div id="api-usage-content"></div>
+        </div>
+    </div>
+    <div id="explanation-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Checklist Item Explanation</h2>
+            <div id="explanation-content"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

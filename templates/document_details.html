@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('list_documents') }}">Documents</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Document Details: {{ document['filename'] }}</h1>
+        <h2>Extracted Text</h2>
+        <pre class="extracted-text">{{ document['extracted_text'] }}</pre>
+        <h2>Generated Checklist</h2>
+        <pre class="checklist">{{ document['checklist'] }}</pre>
+        <div class="export-buttons">
+            <a href="{{ url_for('export_checklist', filename=document['filename'], format='csv') }}" class="button">Export CSV</a>
+            <a href="{{ url_for('export_checklist', filename=document['filename'], format='excel') }}" class="button">Export Excel</a>
+        </div>
+        <h2>Provide Feedback</h2>
+        <form id="feedback-form" action="{{ url_for('submit_feedback', filename=document['filename']) }}" method="post">
+            <label for="feedback">How accurate is this checklist?</label>
+            <select name="accuracy" id="accuracy" required>
+                <option value="5">Excellent</option>
+                <option value="4">Good</option>
+                <option value="3">Average</option>
+                <option value="2">Poor</option>
+                <option value="1">Very Poor</option>
+            </select>
+            <label for="comments">Comments (optional):</label>
+            <textarea name="comments" id="comments"></textarea>
+            <button type="submit">Submit Feedback</button>
+        </form>
+        <form action="{{ url_for('delete_document', filename=document['filename']) }}" method="post">
+            <button type="submit" class="delete-btn">Delete Document</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
